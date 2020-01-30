@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="When developing the React app with back-end API, we often need to define environment variables for different environments. For example, in my project, I have two environments: test and prod, which are">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to build a Create-React-App for different environments">
+<meta property="og:url" content="https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/index.html">
+<meta property="og:site_name" content="Shuai Yuan">
+<meta property="og:description" content="When developing the React app with back-end API, we often need to define environment variables for different environments. For example, in my project, I have two environments: test and prod, which are">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-27T19:01:16.000Z">
+<meta property="article:modified_time" content="2020-01-30T15:13:16.159Z">
+<meta property="article:author" content="Shuai Yuan">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How to build a Create-React-App for different environments</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/iuanshuai" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/05/31/Hibernate-EntityManager/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&text=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&is_video=false&description=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to build a Create-React-App for different environments&body=Check out this article: https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&name=How to build a Create-React-App for different environments&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&t=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-Environment-Variable-Files"><span class="toc-number">1.</span> <span class="toc-text">Create Environment Variable Files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-env-cmd"><span class="toc-number">2.</span> <span class="toc-text">Install env-cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Usage"><span class="toc-number">3.</span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Deploy"><span class="toc-number">4.</span> <span class="toc-text">Deploy</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How to build a Create-React-App for different environments
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Shuai Yuan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-27T19:01:16.000Z" itemprop="datePublished">2019-09-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>When developing the React app with back-end API, we often need to define environment variables for different environments. For example, in my project, I have two environments: <code>test</code> and <code>prod</code>, which are connected to different serverless backend. This is to make sure that the developer can work in an environment that is isolated from the production environment.</p>
+<p>Suppose we are going to deploy our React app to the <strong>testing</strong> and <strong>production</strong> server using <strong>test</strong> and <strong>prod</strong> environment variables and we do not want to eject the project.</p>
+<h1 id="Create-Environment-Variable-Files"><a href="#Create-Environment-Variable-Files" class="headerlink" title="Create Environment Variable Files"></a>Create Environment Variable Files</h1><p>Create files called <code>.env.test</code> and <code>.env.prod</code> at the root of your project.</p>
+<p>Set environment variables in <code>.env.test</code> and <code>.env.prod</code>files.</p>
+<p>For example, in the <code>.env.test</code> we have <code>REACT_APP_API_URL=http://api-test.example.com</code>, in the .env.prod we have <code>REACT_APP_API_URL=http://api.example.com</code>.</p>
+<p>According to the Create React App document, we must create custom environment variables beginning with REACT_APP_.</p>
+<h1 id="Install-env-cmd"><a href="#Install-env-cmd" class="headerlink" title="Install env-cmd"></a>Install env-cmd</h1><p>This is a simple node program for executing commands using an environment from an env file.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install env-cmd --save</span><br></pre></td></tr></table></figure>
+
+<p>Update scripts<br>Add some new scripts to your package.json.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"build:test"</span>: <span class="string">"env-cmd -f .env.test npm run build"</span></span><br><span class="line">    <span class="string">"build:prod"</span>: <span class="string">"env-cmd -f .env.prod npm run build"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>for example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = process.env.REACT_APP_API_URL + <span class="string">'/sms?key='</span> + <span class="keyword">this</span>.state.currentFileName;</span><br></pre></td></tr></table></figure>
+<h1 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build for test server</span></span><br><span class="line">$ npm run build:<span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># build for prod server</span></span><br><span class="line">$ npm run build:prod</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/iuanshuai" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-Environment-Variable-Files"><span class="toc-number">1.</span> <span class="toc-text">Create Environment Variable Files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Install-env-cmd"><span class="toc-number">2.</span> <span class="toc-text">Install env-cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Usage"><span class="toc-number">3.</span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Deploy"><span class="toc-number">4.</span> <span class="toc-text">Deploy</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&text=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&is_video=false&description=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to build a Create-React-App for different environments&body=Check out this article: https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&title=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&name=How to build a Create-React-App for different environments&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://shuaiyuan.net/2019/09/27/How-to-build-a-Create-React-App-for-different-environments/&t=How to build a Create-React-App for different environments" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Shuai Yuan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/iuanshuai" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
