@@ -1,0 +1,12 @@
+[
+    {
+       "name":"Diet-Tracker",
+       "url":"https://github.com/iuanshuai/Diet-Tracker",
+       "desc":"Web app for tracking personal diet and keeping staying healthy"
+    },
+    {
+       "name":"Ticket-Service",
+       "url":"https://github.com/iuanshuai/Ticket-Service",
+       "desc":"Implementation of a simple ticket service"
+    }
+]
